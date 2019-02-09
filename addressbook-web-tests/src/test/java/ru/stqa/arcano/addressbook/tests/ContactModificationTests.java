@@ -9,8 +9,7 @@ public class ContactModificationTests extends TestBase
   @Test
   public void testContactModification(){
     app.getContactHelper().homePage();
-    app.getContactHelper().selectContact();
-    app.getContactHelper().editContact();
+    app.getContactHelper().editContact("4");
     app.getContactHelper().fillContackForm(new ContactData("Стивен", "Хоккинг", "Чёртов гений", "Физик", "\"Пятёрочка\"", "Германия, Уильм", "8800444333"));
     app.getContactHelper().updateBatton();
     app.getContactHelper().homePage();
