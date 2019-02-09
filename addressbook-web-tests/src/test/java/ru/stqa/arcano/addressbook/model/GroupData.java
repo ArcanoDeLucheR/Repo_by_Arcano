@@ -1,4 +1,4 @@
-package ru.stqa.arcano.addressbook;
+package ru.stqa.arcano.addressbook.model;
 
 public class GroupData {
   private final String name;

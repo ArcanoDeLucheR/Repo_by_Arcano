@@ -1,9 +1,10 @@
-package ru.stqa.arcano.addressbook;
+package ru.stqa.arcano.addressbook.tests;
 
 import java.util.concurrent.TimeUnit;
 import org.testng.annotations.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import ru.stqa.arcano.addressbook.model.ContactData;
 
 public class ContactCreationTest {
   private WebDriver wd;
