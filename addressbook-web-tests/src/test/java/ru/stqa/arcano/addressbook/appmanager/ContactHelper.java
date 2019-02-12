@@ -24,8 +24,8 @@ public class ContactHelper extends HelperBase {
     click(By.name("submit"));
   }
 
-  public void selectContact(final String id) {
-    click(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Альберт'])[1]/following::input[" + id + "]"));
+  public void selectContact() {
+    click(By.xpath("//td/input"));
   }
 
   public void homePage() {
@@ -33,15 +33,15 @@ public class ContactHelper extends HelperBase {
   }
 
   public void delete() {
-    click(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Select all'])[1]/following::input[2]"));
+    click(By.xpath("//input[@value='Delete']"));
     wd.switchTo().alert().accept();
   }
 
-  public void editContact(final String id) {
-    click(By.xpath("(//img[@alt='Edit'])[" + id + "]"));
+  public void editContact() {
+    click(By.xpath("(//img[@alt='Edit'])[1]"));
   }
 
-  public void updateBatton() {
+  public void updateButton() {
     click(By.name("update"));
   }
 }

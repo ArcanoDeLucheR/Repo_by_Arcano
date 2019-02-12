@@ -5,9 +5,9 @@ import org.testng.annotations.Test;
 public class ContactDelition extends TestBase{
 
   @Test
-  public void testContactDelition() throws Exception {
+  public void testContactDeletion() throws Exception {
     app.getContactHelper().homePage();
-    app.getContactHelper().selectContact("1");
+    app.getContactHelper().selectContact();
     app.getContactHelper().delete();
 
   }
