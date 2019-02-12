@@ -2,7 +2,7 @@ package ru.stqa.arcano.addressbook.tests;
 
 import org.testng.annotations.Test;
 
-public class ContactDelition extends TestBase{
+public class ContactDeletion extends TestBase{
 
   @Test
   public void testContactDeletion() throws Exception {
