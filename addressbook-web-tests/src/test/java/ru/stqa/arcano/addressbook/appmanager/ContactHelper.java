@@ -22,9 +22,9 @@ public class ContactHelper extends HelperBase {
     type(By.name("address"), contactData.getAddress());
     type(By.name("mobile"), contactData.getMobile());
 
+
     if (creation){
       new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
-
     } else {
       Assert.assertFalse(isElementPresent(By.name("new_group")));
     }

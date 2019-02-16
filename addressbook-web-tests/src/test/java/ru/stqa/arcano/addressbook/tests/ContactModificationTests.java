@@ -12,7 +12,7 @@ public class ContactModificationTests extends TestBase
     if (! app.getContactHelper().isThereAContact())
     {
       app.getNavigationHelper().addNewPage();
-      app.getContactHelper().addContact(new ContactData("Альберт", "Эйнштейн", "Гений", "Физик", null, "Германия, Уильм", "8800444333", "[none]"), true);
+      app.getContactHelper().addContact(new ContactData("Альберт", "Эйнштейн", "Гений", "Физик", null, "Германия, Уильм", "8800444333", null), true);
       app.getContactHelper().homePage();
     }
     app.getContactHelper().editContact();

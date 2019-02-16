@@ -50,6 +50,9 @@ public class ContactData {
   }
 
   public String getGroup() {
+     if (group == null) {
+       group = "[none]";
+     }
     return group;
   }
 }
