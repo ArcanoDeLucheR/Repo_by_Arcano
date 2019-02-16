@@ -1,7 +1,10 @@
 package ru.stqa.arcano.addressbook.appmanager;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 import ru.stqa.arcano.addressbook.model.ContactData;
 
 public class ContactHelper extends HelperBase {
@@ -10,7 +13,7 @@ public class ContactHelper extends HelperBase {
     super(wd);
   }
 
-  public void fillContackForm(ContactData contactData) {
+  public void fillContackForm(ContactData contactData, boolean creation) {
     type(By.name("firstname"), contactData.getFirstname());
     type(By.name("lastname"), contactData.getLastname());
     type(By.name("nickname"), contactData.getNickname());
@@ -18,6 +21,13 @@ public class ContactHelper extends HelperBase {
     type(By.name("company"), contactData.getCompany());
     type(By.name("address"), contactData.getAddress());
     type(By.name("mobile"), contactData.getMobile());
+
+    if (creation){
+      new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+
+    } else {
+      Assert.assertFalse(isElementPresent(By.name("new_group")));
+    }
   }
 
   public void submitAddNew() {
@@ -44,4 +54,6 @@ public class ContactHelper extends HelperBase {
   public void updateButton() {
     click(By.name("update"));
   }
+
+
 }
