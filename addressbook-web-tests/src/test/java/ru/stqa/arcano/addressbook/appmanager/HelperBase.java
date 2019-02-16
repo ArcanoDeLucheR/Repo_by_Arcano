@@ -19,7 +19,7 @@ public class HelperBase {
   protected void type(By loacator, String text) {
     click(loacator);
     if (text != null) {
-      String existingText =wd.findElement(loacator).getAttribute("value");
+      String existingText = wd.findElement(loacator).getAttribute("value");
       if(! text.equals(existingText)){
         wd.findElement(loacator).clear();
         wd.findElement(loacator).sendKeys(text);
