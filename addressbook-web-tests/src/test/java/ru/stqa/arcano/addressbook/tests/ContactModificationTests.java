@@ -4,6 +4,8 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.stqa.arcano.addressbook.model.ContactData;
 
+import java.util.List;
+
 
 public class ContactModificationTests extends TestBase
 {
@@ -16,13 +18,13 @@ public class ContactModificationTests extends TestBase
       app.getContactHelper().addContact(new ContactData("Альберт", "Эйнштейн", "Гений", "Физик", null, "Германия, Уильм", "8800444333", null), true);
       app.getContactHelper().homePage();
     }
-    int before  = app.getContactHelper().getContactCount();
-    app.getContactHelper().editContact();
+    List<ContactData> before = app.getContactHelper().getContactList();
+    app.getContactHelper().editContact(before.size() - 1);
     app.getContactHelper().fillContackForm(new ContactData("Стивен", "Хоккинг", "Чёртов гений", "Физик", "\"Пятёрочка\"", "Германия, Уильм", "8800444333", null), false);
     app.getContactHelper().updateButton();
     app.getContactHelper().homePage();
-    int after  = app.getContactHelper().getContactCount();
-    Assert.assertEquals(after, before);
+    List<ContactData> after = app.getContactHelper().getContactList();
+    Assert.assertEquals(after.size(), before.size());
   }
 
 }

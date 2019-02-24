@@ -5,6 +5,8 @@ import org.testng.annotations.Test;
 import ru.stqa.arcano.addressbook.model.ContactData;
 import ru.stqa.arcano.addressbook.model.GroupData;
 
+import java.util.List;
+
 public class ContactDeletionTest extends TestBase{
 
   @Test
@@ -16,11 +18,11 @@ public class ContactDeletionTest extends TestBase{
               app.getContactHelper().addContact(new ContactData("Альберт", "Эйнштейн", "Гений", "Физик", null, "Германия, Уильм", "8800444333", null), true);
               app.getContactHelper().homePage();
     }
-    int before  = app.getContactHelper().getContactCount();
-    app.getContactHelper().selectContact();
+    List<ContactData> before = app.getContactHelper().getContactList();
+    app.getContactHelper().selectContact(before.size() - 1);
     app.getContactHelper().delete();
     app.getContactHelper().homePage();
-    int after  = app.getContactHelper().getContactCount();
-    Assert.assertEquals(after, before - 1);
+    List<ContactData> after = app.getContactHelper().getContactList();
+    Assert.assertEquals(after.size(), before.size() - 1);
   }
 }
