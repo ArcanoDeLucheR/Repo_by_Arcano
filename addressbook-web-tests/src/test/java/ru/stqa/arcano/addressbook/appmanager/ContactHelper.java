@@ -54,10 +54,7 @@ public class ContactHelper extends HelperBase {
   }
 
   public void editContact(int index) {
-  //  wd.findElements(By.xpath("(//img[@alt='Edit'])[" + 2 + "]")).get(index).click();
- //    wd.findElements(By.xpath("(//img[@alt='Edit'])")).get(index);
     wd.findElements(By.xpath("(//img[@alt='Edit'])")).get(index).click();
-  //  click(By.xpath("(//img[@alt='Edit'])[" + index + "]"));
   }
 
   public void updateButton() {
