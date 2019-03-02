@@ -69,19 +69,12 @@ public class ContactData {
     return this;
   }
 
-  public ContactData withHomePhone(String mobile) {
-    this.mobilePhone = mobile;
-    return this;
-  }
+
   public ContactData withMobilePhone(String mobile) {
     this.mobilePhone = mobile;
     return this;
   }
 
-  public ContactData withWorkPhone(String mobile) {
-    this.mobilePhone = mobile;
-    return this;
-  }
   public ContactData withGroup(String group) {
     this.group = group;
     return this;
@@ -89,6 +82,15 @@ public class ContactData {
 
   public ContactData withId(int id) {
     this.id = id;
+    return this;
+  }
+  public ContactData withHomePhone(String home) {
+    this.homePhone = home;
+    return this;
+  }
+
+  public ContactData withWorkPhone(String work) {
+    this.workPhone = work;
     return this;
   }
 
@@ -146,4 +148,5 @@ public class ContactData {
      }
     return group;
   }
+
 }
