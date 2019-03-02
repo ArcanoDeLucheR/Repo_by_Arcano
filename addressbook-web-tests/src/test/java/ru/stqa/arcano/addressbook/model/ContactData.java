@@ -13,6 +13,17 @@ public class ContactData {
   private  String homePhone;
   private  String mobilePhone;
   private  String workPhone;
+  private  String AllPhones;
+
+  public String getAllPhones() {
+    return AllPhones;
+  }
+
+  public ContactData withAllPhones(String allPhones) {
+    AllPhones = allPhones;
+    return this;
+  }
+
   private  String group;
 
   public ContactData() {
