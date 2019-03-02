@@ -7,10 +7,8 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.arcano.addressbook.model.ContactData;
 import ru.stqa.arcano.addressbook.model.Contacts;
-
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+
 
 public class ContactHelper extends HelperBase {
 
@@ -57,6 +55,7 @@ public class ContactHelper extends HelperBase {
   public void delete(ContactData contact) {
     selectById(contact.getId());
     clickdelete();
+    contactCache = null;
     homePage();
   }
 
@@ -73,11 +72,13 @@ public class ContactHelper extends HelperBase {
   public void addContact(ContactData contact, boolean creation ) {
     fillContackForm(contact, creation);
     submitAddNew();
+    contactCache = null;
   }
   public void modify(ContactData contact) {
     editContact(contact.getId());
     fillContackForm(contact, false);
     updateButton();
+    contactCache = null;
     homePage();
   }
 
@@ -85,16 +86,19 @@ public class ContactHelper extends HelperBase {
     return isElementPresent(By.xpath("//td/input"));
   }
 
+  private Contacts contactCache = null;
   public Contacts all() {
-    Contacts contacts = new Contacts();
+    if (contactCache != null){
+      return new Contacts(contactCache);
+    }
+    contactCache = new Contacts();
     List<WebElement> elements = wd.findElements(By.name("entry"));
     for (WebElement element: elements) {
       int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("id"));
       String lastname = element.findElement(By.xpath(".//td[2]")).getText();
       String firstname = element.findElement(By.xpath(".//td[3]")).getText();
-      ContactData contact = new ContactData().withId(id).withFirstname(firstname).withLastname(lastname);
-      contacts.add(contact);
+      contactCache.add(new ContactData().withId(id).withFirstname(firstname).withLastname(lastname));
     }
-    return contacts;
+    return new Contacts(contactCache);
   }
 }
