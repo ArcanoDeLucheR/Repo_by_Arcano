@@ -6,7 +6,6 @@ import org.testng.annotations.Test;
 import ru.stqa.arcano.addressbook.model.ContactData;
 
 import java.util.Comparator;
-import java.util.HashSet;
 import java.util.List;
 
 
@@ -14,21 +13,21 @@ public class ContactModificationTests extends TestBase
 {
   @BeforeMethod
   public void ensurePreconditions(){
-    app.getContactHelper().homePage();
-    if (! app.getContactHelper().isThereAContact())
+    app.contact().homePage();
+    if (! app.contact().isThereAContact())
     {
-      app.getNavigationHelper().addNewPage();
-      app.getContactHelper().addContact(new ContactData("Альберт", "Эйнштейн", "Гений", "Физик", null, "Германия, Уильм", "8800444333", null), true);
-      app.getContactHelper().homePage();
+      app.goTo().addNewPage();
+      app.contact().addContact(new ContactData("Альберт", "Эйнштейн", "Гений", "Физик", null, "Германия, Уильм", "8800444333", null), true);
+      app.contact().homePage();
     }
   }
-  @Test (enabled = false)
+  @Test ()
   public void testContactModification(){
-    List<ContactData> before = app.getContactHelper().getContactList();
+    List<ContactData> before = app.contact().list();
     int index = before.size() -1;
     ContactData contact = new ContactData(before.get(index).getId(),"Стивен", "Хоккинг", "Чёртов гений", "Физик", "\"Пятёрочка\"", "Германия, Уильм", "8800444333", null);
-    app.getContactHelper().modifyContact(index, contact);
-    List<ContactData> after = app.getContactHelper().getContactList();
+    app.contact().modify(index, contact);
+    List<ContactData> after = app.contact().list();
     Assert.assertEquals(after.size(), before.size());
 
     before.remove(index );

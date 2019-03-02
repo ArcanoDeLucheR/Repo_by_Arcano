@@ -10,16 +10,16 @@ import java.util.List;
 
 public class ContactCreationTest extends TestBase {
 
-  @Test(enabled = false)
+  @Test()
   public void testContactCreation() throws Exception {
-    app.getContactHelper().homePage();
-    List<ContactData> before = app.getContactHelper().getContactList();
-    app.getNavigationHelper().addNewPage();
+    app.contact().homePage();
+    List<ContactData> before = app.contact().list();
+    app.goTo().addNewPage();
     ContactData contact = new ContactData("Альберт", "Эйнштейн", "Гений", "Физик", null, "Германия, Уильм", "8800444333", null);
-    app.getContactHelper().fillContackForm(contact,true);
-    app.getContactHelper().submitAddNew();
-    app.getContactHelper().homePage();
-    List<ContactData> after = app.getContactHelper().getContactList();
+    app.contact().fillContackForm(contact,true);
+    app.contact().submitAddNew();
+    app.contact().homePage();
+    List<ContactData> after = app.contact().list();
     Assert.assertEquals(after.size(), before.size() + 1);
 
 
