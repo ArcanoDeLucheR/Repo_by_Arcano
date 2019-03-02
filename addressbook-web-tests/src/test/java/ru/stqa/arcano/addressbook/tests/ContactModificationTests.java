@@ -1,15 +1,9 @@
 package ru.stqa.arcano.addressbook.tests;
 
-import org.hamcrest.CoreMatchers;
-import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.arcano.addressbook.model.ContactData;
 import ru.stqa.arcano.addressbook.model.Contacts;
-
-import java.util.Comparator;
-import java.util.List;
-import java.util.Set;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -29,7 +23,7 @@ public class ContactModificationTests extends TestBase {
                       .withTitle("Физик")
                       .withAddress("Германия, Уильм")
                       .withCompany("E=mc^")
-                      .withMobile("8800444333"),
+                      .withMobilePhone("8800444333"),
               true);
       app.contact().homePage();
     }
@@ -47,7 +41,7 @@ public class ContactModificationTests extends TestBase {
             .withTitle("Физик")
             .withAddress("Штаты")
             .withCompany("Black hole")
-            .withMobile("89307151199");
+            .withMobilePhone("89307151199");
     app.contact().modify(contact);
     assertThat(app.contact().count(), equalTo(before.size()));
     Contacts after = app.contact().all();

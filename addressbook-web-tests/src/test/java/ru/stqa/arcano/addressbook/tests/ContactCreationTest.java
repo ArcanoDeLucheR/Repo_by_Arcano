@@ -7,7 +7,6 @@ import ru.stqa.arcano.addressbook.model.Contacts;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.*;
-import static org.testng.Assert.*;
 
 public class ContactCreationTest extends TestBase {
 
@@ -23,7 +22,7 @@ public class ContactCreationTest extends TestBase {
             .withTitle("Физик")
             .withAddress("Германия, Уильм")
             .withCompany("E=mc^")
-            .withMobile("8800444333");
+            .withMobilePhone("8800444333");
     app.contact().addContact(contact,true);
     app.contact().homePage();
     assertThat(app.contact().count(), equalTo(before.size() + 1));

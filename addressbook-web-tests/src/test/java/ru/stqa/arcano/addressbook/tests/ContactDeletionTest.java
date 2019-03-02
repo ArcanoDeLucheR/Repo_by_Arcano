@@ -1,21 +1,14 @@
 package ru.stqa.arcano.addressbook.tests;
 
 import org.hamcrest.CoreMatchers;
-import org.hamcrest.MatcherAssert;
-import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.arcano.addressbook.model.ContactData;
 import ru.stqa.arcano.addressbook.model.Contacts;
 
 
-import java.util.Comparator;
-import java.util.List;
-import java.util.Set;
-
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.*;
-import static org.testng.Assert.*;
 
 public class ContactDeletionTest extends TestBase {
 
@@ -33,7 +26,7 @@ public class ContactDeletionTest extends TestBase {
               .withTitle("Физик")
               .withAddress("Германия, Уильм")
               .withCompany("E=mc^")
-              .withMobile("8800444333"),
+              .withMobilePhone("8800444333"),
               true);
       app.contact().homePage();
     }
