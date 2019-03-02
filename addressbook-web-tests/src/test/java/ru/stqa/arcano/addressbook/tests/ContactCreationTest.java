@@ -26,8 +26,13 @@ public class ContactCreationTest extends TestBase {
             .withMobile("8800444333");
     app.contact().addContact(contact,true);
     app.contact().homePage();
+    assertThat(app.contact().count(), equalTo(before.size() + 1));
     Contacts after = (Contacts) app.contact().all();
-    assertThat(after.size(), equalTo(before.size() + 1));
+
+    //assertThat(after.size(), equalTo(before.size() + 1));
+
+    //assertThat(app.contact().isThereAContact(), equalTo(before.size() + 1));
+
     assertThat(after, equalTo(
             before.withAdded(contact.withId(after.stream().mapToInt((c)->c.getId()).max().getAsInt()))));
 
