@@ -8,6 +8,7 @@ import ru.stqa.arcano.addressbook.model.ContactData;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Set;
 
 public class ContactDeletionTest extends TestBase {
 
@@ -32,22 +33,21 @@ public class ContactDeletionTest extends TestBase {
   }
   @Test()
   public void testContactDeletion() throws Exception {
-    List<ContactData> before = app.contact().list();
-    int index = before.size() -1;
-    app.contact().select(index);
-    app.contact().delete();
-    app.contact().homePage();
-    List<ContactData> after = app.contact().list();
+    Set<ContactData> before = app.contact().all();
+    ContactData deletedContact = before.iterator().next();
+    app.contact().delete(deletedContact);
+    Set<ContactData> after = app.contact().all();
     Assert.assertEquals(after.size(), before.size() - 1);
-    before.remove(index);
-    Comparator<? super ContactData> byId = (g1, g2) -> Integer.compare(g1.getId(), g2.getId());
-    before.sort(byId);
-    after.sort(byId);
+
+    before.remove(deletedContact);
+
 
     Assert.assertEquals(before, after);
 
 
   }
+
+
 
 
 }
