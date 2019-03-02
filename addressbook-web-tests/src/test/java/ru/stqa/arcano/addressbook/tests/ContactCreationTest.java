@@ -22,15 +22,15 @@ public class ContactCreationTest extends TestBase {
             .withTitle("Физик")
             .withAddress("Германия, Уильм")
             .withCompany("E=mc^")
-            .withMobilePhone("8800444333");
+            .withMobilePhone("8800444333")
+            .withMobilePhone("+7 (800) 333-333")
+            .withEmail_1("albert_einstein@mail.ru")
+            .withEmail_3("relativity@пmail.ru");
     app.contact().addContact(contact,true);
     app.contact().homePage();
     assertThat(app.contact().count(), equalTo(before.size() + 1));
     Contacts after = (Contacts) app.contact().all();
 
-    //assertThat(after.size(), equalTo(before.size() + 1));
-
-    //assertThat(app.contact().isThereAContact(), equalTo(before.size() + 1));
 
     assertThat(after, equalTo(
             before.withAdded(contact.withId(after.stream().mapToInt((c)->c.getId()).max().getAsInt()))));

@@ -10,10 +10,51 @@ public class ContactData {
   private  String title;
   private  String company;
   private  String address;
+  private  String email_1;
+  private  String email_2;
+  private  String email_3;
+  private  String all_emails;
   private  String homePhone;
   private  String mobilePhone;
   private  String workPhone;
   private  String AllPhones;
+
+  public String getEmail_1() {
+    return email_1;
+  }
+
+  public ContactData withEmail_1(String email_1) {
+    this.email_1 = email_1;
+    return this;
+  }
+
+  public String getEmail_2() {
+    return email_2;
+  }
+
+  public ContactData withEmail_2(String email_2) {
+    this.email_2 = email_2;
+    return this;
+  }
+
+  public String getEmail_3() {
+    return email_3;
+  }
+
+  public ContactData withEmail_3(String email_3) {
+    this.email_3 = email_3;
+    return this;
+  }
+
+  public String getAll_emails() {
+    return all_emails;
+  }
+
+  public ContactData withAll_emails(String all_emails) {
+    this.all_emails = all_emails;
+    return this;
+  }
+
 
   public String getAllPhones() {
     return AllPhones;
