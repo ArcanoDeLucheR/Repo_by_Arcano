@@ -18,7 +18,15 @@ public class ContactDeletionTest extends TestBase {
     if (! app.contact().isThereAContact())
     {
       app.goTo().addNewPage();
-      app.contact().addContact(new ContactData("Альберт", "Эйнштейн", "Гений", "Физик", null, "Германия, Уильм", "8800444333", null), true);
+      app.contact().addContact(new ContactData()
+              .withFirstname("Альберт")
+              .withLastname("Эйнштейн")
+              .withNickname("Гений")
+              .withTitle("Физик")
+              .withAddress("Германия, Уильм")
+              .withCompany("E=mc^")
+              .withMobile("8800444333"),
+              true);
       app.contact().homePage();
     }
   }

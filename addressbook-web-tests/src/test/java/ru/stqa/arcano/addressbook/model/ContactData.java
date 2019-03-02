@@ -1,31 +1,63 @@
 package ru.stqa.arcano.addressbook.model;
 
+
 public class ContactData {
-  public void setId(int id) {
-    this.id = id;
-  }
 
-  private int id;
-  private final String firstname;
-  private final String lastname;
-  private final String nickname;
-  private final String title;
-  private final String company;
-  private final String address;
-  private final String mobile;
-  private String group;
+  private int id = Integer.MAX_VALUE;
+  private  String firstname;
+  private  String lastname;
+  private  String nickname;
+  private  String title;
+  private  String company;
+  private  String address;
+  private  String mobile;
+  private  String group;
 
-  public ContactData(int id, String firstname, String lastname, String nickname, String title, String company, String address, String mobile , String group) {
-    this.id = id;
+  public ContactData withFirstname(String firstname) {
     this.firstname = firstname;
-    this.lastname = lastname;
-    this.nickname = nickname;
-    this.title = title;
-    this.company = company;
-    this.address = address;
-    this.mobile = mobile;
-    this.group = group;
+    return this;
   }
+
+  public ContactData withLastname(String lastname) {
+    this.lastname = lastname;
+    return this;
+  }
+
+  public ContactData withNickname(String nickname) {
+    this.nickname = nickname;
+    return this;
+  }
+
+  public ContactData withTitle(String title) {
+    this.title = title;
+    return this;
+  }
+
+  public ContactData withCompany(String company) {
+    this.company = company;
+    return this;
+  }
+
+  public ContactData withAddress(String address) {
+    this.address = address;
+    return this;
+  }
+
+  public ContactData withMobile(String mobile) {
+    this.mobile = mobile;
+    return this;
+  }
+
+  public ContactData withGroup(String group) {
+    this.group = group;
+    return this;
+  }
+
+  public ContactData withId(int id) {
+    this.id = id;
+    return this;
+  }
+
 
   @Override
   public String toString() {
@@ -56,18 +88,6 @@ public class ContactData {
     int result = firstname != null ? firstname.hashCode() : 0;
     result = 31 * result + (lastname != null ? lastname.hashCode() : 0);
     return result;
-  }
-
-  public ContactData(String firstname, String lastname, String nickname, String title, String company, String address, String mobile , String group) {
-    this.id = Integer.MAX_VALUE;
-    this.firstname = firstname;
-    this.lastname = lastname;
-    this.nickname = nickname;
-    this.title = title;
-    this.company = company;
-    this.address = address;
-    this.mobile = mobile;
-    this.group = group;
   }
 
   public String getFirstname() {
