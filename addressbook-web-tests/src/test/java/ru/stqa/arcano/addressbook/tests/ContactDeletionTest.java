@@ -1,14 +1,20 @@
 package ru.stqa.arcano.addressbook.tests;
 
+import org.hamcrest.CoreMatchers;
+import org.hamcrest.MatcherAssert;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.arcano.addressbook.model.ContactData;
+import ru.stqa.arcano.addressbook.model.Contacts;
 
 
 import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
+
+import static org.hamcrest.MatcherAssert.*;
+import static org.testng.Assert.*;
 
 public class ContactDeletionTest extends TestBase {
 
@@ -33,16 +39,14 @@ public class ContactDeletionTest extends TestBase {
   }
   @Test()
   public void testContactDeletion() throws Exception {
-    Set<ContactData> before = app.contact().all();
+    Contacts before = app.contact().all();
     ContactData deletedContact = before.iterator().next();
     app.contact().delete(deletedContact);
-    Set<ContactData> after = app.contact().all();
-    Assert.assertEquals(after.size(), before.size() - 1);
+    Contacts after = app.contact().all();
+    assertEquals(after.size(), before.size() - 1);
+    assertThat(after, CoreMatchers.equalTo(before.without(deletedContact)));
 
-    before.remove(deletedContact);
 
-
-    Assert.assertEquals(before, after);
 
 
   }
