@@ -23,7 +23,7 @@ public class GrouopDataGenerator {
   @Parameter(names = "-f", description = "Target file")
   public String file;
 
-  @Parameter(names = "-d", description = "Data dormat")
+  @Parameter(names = "-d", description = "Data format")
   public String format;
 
   public static void main (String[] args) throws IOException {

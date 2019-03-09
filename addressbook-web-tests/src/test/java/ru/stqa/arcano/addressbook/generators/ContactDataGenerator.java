@@ -3,7 +3,9 @@ package ru.stqa.arcano.addressbook.generators;
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
 import com.beust.jcommander.ParameterException;
-import ru.stqa.arcano.addressbook.model.GroupData;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import ru.stqa.arcano.addressbook.model.ContactData;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -20,6 +22,9 @@ public class ContactDataGenerator {
   @Parameter(names = "-f", description = "Target file")
   public String file;
 
+  @Parameter(names = "-d", description = "Data format")
+  public String format;
+
   public static void main (String[] args) throws IOException {
     ContactDataGenerator generator = new ContactDataGenerator();
     JCommander jCommander = new JCommander(generator);
@@ -34,24 +39,45 @@ public class ContactDataGenerator {
   }
 
   private void run() throws IOException {
-    List<GroupData> groups = generateGroups(count);
-    save(groups, new File(file));
+    List<ContactData> groups = generateContacts(count);
+    if (format.equals("json")) {
+      saveAsJson(groups, new File(file));
+    }
+    else {
+      System.out.println("Unrecognized format " + format);
+    }
+
   }
 
-  private void save(List<GroupData> groups, File file) throws IOException {
-    System.out.println(new File(".").getAbsolutePath());
+  private void saveAsJson(List<ContactData> contacts, File file) throws IOException {
+    Gson gson = new GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();
+    String json = gson.toJson(contacts);
     Writer writer = new FileWriter(file);
-    for (GroupData group : groups){
-      writer.write(String.format("%s;%s;%s\n", group.getName(), group.getHeader(), group.getFooter()));
-    }
-   writer.close();
+    writer.write(json);
+    writer.close();
   }
 
-  private  List<GroupData> generateGroups(int count) {
-    List<GroupData> groups = new ArrayList<GroupData>();
+
+  private  List<ContactData> generateContacts(int count) {
+    List<ContactData> contacts = new ArrayList<ContactData>();
+    File photo = new File("src/test/resources/1.jpg");
+   // String photo = "src/test/resources/1.jpg";
     for (int i = 0; i < count; i++){
-      groups.add(new GroupData().withName(String.format("test %s", i)).withHeader(String.format("header %s", i)).withFooter(String.format("footer %s", i)));
+      contacts.add(new ContactData()
+              .withFirstname(String.format("Firstname %s", i))
+              .withLastname(String.format("Lastname %s", i))
+              .withNickname(String.format("Nickname %s", i))
+              .withTitle(String.format("Title %s", i))
+              .withAddress(String.format("Address %s", i))
+              .withCompany(String.format("Company %s", i))
+              .withHomePhone(String.format("HomePhone %s", i))
+              .withMobilePhone(String.format("MobilePhone %s", i))
+              .withEmail_1(String.format("Email_1 %s", i))
+              .withEmail_3(String.format("Email_3 %s", i))
+              .withWorkPhone(String.format("WorkPhone %s", i))
+      );
+
     }
-    return groups;
+    return contacts;
   }
 }

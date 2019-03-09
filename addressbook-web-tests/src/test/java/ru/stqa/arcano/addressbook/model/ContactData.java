@@ -1,25 +1,42 @@
 package ru.stqa.arcano.addressbook.model;
 
 
+import com.google.gson.annotations.Expose;
+
 import java.io.File;
 
 public class ContactData {
 
   private int id = Integer.MAX_VALUE;
+  @Expose
   private  String firstname;
+  @Expose
   private  String lastname;
+  @Expose
   private  String nickname;
+  @Expose
   private  String title;
+  @Expose
   private  String company;
+  @Expose
   private  String address;
+  @Expose
   private  String email_1;
+  @Expose
   private  String email_2;
+  @Expose
   private  String email_3;
+  @Expose
   private  String all_emails;
+  @Expose
   private  String homePhone;
+  @Expose
   private  String mobilePhone;
+  @Expose
   private  String workPhone;
+  @Expose
   private  String AllPhones;
+  @Expose
   private File photo;
 
   public File getPhoto() {
