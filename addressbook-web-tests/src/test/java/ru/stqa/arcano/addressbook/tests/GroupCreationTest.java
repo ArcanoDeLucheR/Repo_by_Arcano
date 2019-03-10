@@ -3,6 +3,8 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.annotations.*;
 import ru.stqa.arcano.addressbook.model.GroupData;
 import ru.stqa.arcano.addressbook.model.Groups;
@@ -18,6 +20,8 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 
 public class GroupCreationTest extends TestBase {
+
+
 
   @DataProvider
   public Iterator<Object[]> validGroupsFromXml() throws IOException {
@@ -53,7 +57,6 @@ public class GroupCreationTest extends TestBase {
 
   @Test(dataProvider = "validGroupsFromJson")
   public void testGroupCreation(GroupData group) throws Exception {
-  //  GroupData group = new GroupData().withName(name).withHeader(header).withFooter(footer);
     app.goTo().GroupPage();
     Groups before = (Groups) app.group().all();
     app.group().create(group);
@@ -61,6 +64,7 @@ public class GroupCreationTest extends TestBase {
     Groups after = (Groups) app.group().all();
     assertThat(after, equalTo(
             before.WithAdded(group.withId(after.stream().mapToInt((g)->g.getId()).max().getAsInt()))));
+
 
   }
 
