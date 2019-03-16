@@ -2,49 +2,83 @@ package ru.stqa.arcano.addressbook.model;
 
 
 import com.google.gson.annotations.Expose;
+import org.hibernate.annotations.Type;
 
+import javax.persistence.*;
 import java.io.File;
+
+@Entity
+@Table(name = "addressbook")
 
 public class ContactData {
 
+  @Id
+  @Column(name = "id")
   private int id = Integer.MAX_VALUE;
   @Expose
+  @Column(name = "firstname")
   private  String firstname;
   @Expose
+  @Column(name = "lastname")
   private  String lastname;
   @Expose
+  @Column(name = "nickname")
   private  String nickname;
   @Expose
+  @Column(name = "title")
   private  String title;
   @Expose
+  @Column(name = "company")
   private  String company;
   @Expose
+  @Type(type = "text")
+  @Column(name = "address")
   private  String address;
   @Expose
+  @Type(type = "text")
+  @Column(name = "email")
   private  String email_1;
   @Expose
+  @Type(type = "text")
+  @Column(name = "email2")
   private  String email_2;
   @Expose
+  @Type(type = "text")
+  @Column(name = "email3")
   private  String email_3;
   @Expose
+  @Transient
   private  String all_emails;
   @Expose
+  @Column(name = "home")
+  @Type(type = "text")
   private  String homePhone;
   @Expose
+  @Column(name = "mobile")
+  @Type(type = "text")
   private  String mobilePhone;
   @Expose
+  @Column(name = "work")
+  @Type(type = "text")
   private  String workPhone;
   @Expose
+  @Transient
   private  String AllPhones;
   @Expose
-  private File photo;
+  @Column(name = "photo")
+  @Type(type = "text")
+  private String photo;
+
+  @Transient
+  private  String group;
+
 
   public File getPhoto() {
-    return photo;
+    return new File(photo);
   }
 
   public ContactData withPhoto(File photo) {
-    this.photo = photo;
+    this.photo = photo.getPath();
     return this;
   }
 
@@ -94,7 +128,6 @@ public class ContactData {
     return this;
   }
 
-  private  String group;
 
   public ContactData() {
   }
