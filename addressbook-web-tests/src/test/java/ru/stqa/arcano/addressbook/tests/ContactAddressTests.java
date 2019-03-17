@@ -20,6 +20,7 @@ public class ContactAddressTests extends TestBase {
     ContactData contactInfoEditFrom = app.contact().infoFromEditForm(contact);
 
     assertThat(contact.getAddress(), equalTo(contactInfoEditFrom.getAddress()));
+    verifyContactListInUI();
   }
 
   @Test
@@ -29,6 +30,7 @@ public class ContactAddressTests extends TestBase {
     ContactData contactInfoEditFrom = app.contact().infoFromEditForm(contact);
 
     assertThat(contact.getAll_emails(), equalTo(mergeEmailes(contactInfoEditFrom)));
+    verifyContactListInUI();
   }
 
   private String mergeEmailes(ContactData contact) {

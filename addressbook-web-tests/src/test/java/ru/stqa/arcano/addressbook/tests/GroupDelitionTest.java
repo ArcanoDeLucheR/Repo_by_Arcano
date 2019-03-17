@@ -30,6 +30,7 @@ public class GroupDelitionTest extends TestBase {
     assertThat(app.group().Count(), equalTo(before.size() - 1));
     Groups after = app.db().groups();
     assertThat(after, CoreMatchers.equalTo(before.without((deletedGroup))));
+    verifyGroupListInUI();
 
 
 
