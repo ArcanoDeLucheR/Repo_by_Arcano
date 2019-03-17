@@ -6,6 +6,8 @@ import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.io.File;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "addressbook")
@@ -58,6 +60,22 @@ public class ContactData {
   @Type(type = "text")
   private  String mobilePhone;
 
+  @Expose
+  @Column(name = "work")
+  @Type(type = "text")
+  private  String workPhone;
+  @Expose
+  @Transient
+  private  String AllPhones;
+  @Expose
+  @Column(name = "photo")
+  @Type(type = "text")
+  private String photo;
+
+  @ManyToMany(fetch = FetchType.EAGER)
+  @JoinTable(name="address_in_groups", joinColumns = @JoinColumn(name = "id"), inverseJoinColumns = @JoinColumn(name = "group_id"))
+  private Set<GroupData> groups = new HashSet<GroupData>();
+
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
@@ -87,22 +105,6 @@ public class ContactData {
     result = 31 * result + (mobilePhone != null ? mobilePhone.hashCode() : 0);
     return result;
   }
-
-  @Expose
-  @Column(name = "work")
-  @Type(type = "text")
-  private  String workPhone;
-  @Expose
-  @Transient
-  private  String AllPhones;
-  @Expose
-  @Column(name = "photo")
-  @Type(type = "text")
-  private String photo;
-
-  @Transient
-  private  String group;
-
 
   public File getPhoto() {
     if (photo == null) {
@@ -204,10 +206,6 @@ public class ContactData {
     return this;
   }
 
-  public ContactData withGroup(String group) {
-    this.group = group;
-    return this;
-  }
 
   public ContactData withId(int id) {
     this.id = id;
@@ -271,11 +269,7 @@ public class ContactData {
     return workPhone;
   }
 
-  public String getGroup() {
-     if (group == null) {
-       group = "[none]";
-     }
-    return group;
+  public Groups getGroups() {
+    return new Groups(groups);
   }
-
 }

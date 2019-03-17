@@ -5,7 +5,7 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.stqa.arcano.addressbook.model.ContactData;
 import ru.stqa.arcano.addressbook.model.Contacts;
-
+import ru.stqa.arcano.addressbook.model.Groups;
 
 
 import java.io.BufferedReader;
@@ -38,6 +38,7 @@ public class ContactCreationTest extends TestBase {
 
   @Test(dataProvider = "validContactsFromJson")
   public void testContactCreation(ContactData contact) throws Exception {
+ //   Groups groups = app.db().groups();
     app.contact().homePage();
     Contacts before = (Contacts) app.db().contacts();
     app.goTo().addNewPage();
