@@ -7,6 +7,9 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.arcano.addressbook.model.ContactData;
 import ru.stqa.arcano.addressbook.model.Contacts;
+import ru.stqa.arcano.addressbook.model.GroupData;
+import ru.stqa.arcano.addressbook.model.Groups;
+
 import java.util.List;
 
 
@@ -82,6 +85,36 @@ public class ContactHelper extends HelperBase {
     homePage();
   }
 
+  public void addContactToGroup(ContactData contact, GroupData group) {
+    selectById(contact.getId());
+    clickAddTo(group.getName());
+    contactCache = null;
+    homePage();
+
+  }
+
+  private void clickAddTo(String group_name) {
+    new Select(wd.findElement(By.name("to_group"))).selectByVisibleText(group_name);
+    wd.findElement(By.name("to_group")).click();
+    click(By.xpath("//input[@value='Add to']"));
+  }
+
+  public void ViewContactsFromGroup(GroupData group) {
+    selectGroup(group.getName());
+  }
+
+  private void selectGroup(String group_name) {
+    new Select(wd.findElement(By.name("group"))).selectByVisibleText(group_name);
+    wd.findElement(By.name("group")).click();
+  }
+
+  public void DeleteContactFromGroup(ContactData contact) {
+    selectById(contact.getId());
+    wd.findElement(By.name("remove")).click();
+    contactCache = null;
+    homePage();
+  }
+
   public boolean isThereAContact() {
     return isElementPresent(By.xpath("//td/input"));
   }
@@ -129,4 +162,5 @@ public class ContactHelper extends HelperBase {
   public void editContact(int id) {
     wd.findElement(By.cssSelector("a[href='edit.php?id=" + id + "']")).click();
   }
+
 }
