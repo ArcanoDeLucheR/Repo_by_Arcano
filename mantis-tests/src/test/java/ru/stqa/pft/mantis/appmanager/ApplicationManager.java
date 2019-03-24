@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
-public class ApplicationManager {
+public class  ApplicationManager {
   private final Properties properties;
   WebDriver wd;
 
@@ -40,6 +40,14 @@ public class ApplicationManager {
   }
 
   public void stop() {wd.quit();
+  }
+
+  public HttpSession newSession() {
+    return new HttpSession(this);
+  }
+
+  public String getProperty(String key) {
+    return properties.getProperty(key);
   }
 
 

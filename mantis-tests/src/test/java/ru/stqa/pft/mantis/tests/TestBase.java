@@ -6,12 +6,6 @@ import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import ru.stqa.pft.mantis.appmanager.ApplicationManager;
 
-import java.lang.reflect.Method;
-import java.util.Arrays;
-import java.util.stream.Collectors;
-
-import static org.hamcrest.CoreMatchers.equalTo;
-
 
 public class TestBase {
 
