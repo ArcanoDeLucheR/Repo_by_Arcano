@@ -1,13 +1,34 @@
 package ru.stqa.pft.mantis.model;
 
-public class MantisUsers {
-  public String id;
-  public String username;
-  public String email;
+import com.google.common.collect.ForwardingSet;
 
-  public MantisUsers(String id, String username, String email) {
-    this.id = id;
-    this.username = username;
-    this.email = email;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
+
+public class MantisUsers extends ForwardingSet<MantisUserData> {
+
+  private Set<MantisUserData> delegate;
+
+  public MantisUsers (MantisUsers mantisUsers) {
+    this.delegate = new HashSet<MantisUserData>(mantisUsers.delegate);
   }
-}
+
+  public MantisUsers(){
+    this.delegate = new HashSet<MantisUserData>();
+  }
+
+  public MantisUsers(Collection<MantisUserData> mantisUsers) {
+    this.delegate = new HashSet<MantisUserData>(mantisUsers);
+  }
+
+  @Override
+  protected Set<MantisUserData> delegate() {
+    return delegate;
+  }
+
+
+
+  }
+
+

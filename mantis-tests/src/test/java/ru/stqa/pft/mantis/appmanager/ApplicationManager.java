@@ -15,7 +15,6 @@ import java.util.concurrent.TimeUnit;
 public class  ApplicationManager {
   private final Properties properties;
   private WebDriver wd;
-
   private String browser;
   private RegistrationHelper registrationHelper;
   private FtpHelper ftp;
@@ -34,6 +33,7 @@ public class  ApplicationManager {
     properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
 
   }
+
 
   public void stop() {
     if (wd != null) {
