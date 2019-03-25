@@ -10,31 +10,32 @@ import javax.mail.MessagingException;
 import java.io.IOException;
 import java.util.List;
 
-import static org.testng.Assert.assertTrue;
-
-public class RegistrationTests extends TestBase {
-
+public class ResetPasswordTests  extends TestBase {
   @BeforeMethod
   public void startMailServer() {
-    app.mail().checkMailServerStatus();;
+    app.mail().stop();
+    app.userManagement().loggingAsAdmin();
   }
+
+
 
   @Test
-  public void testRegistration() throws IOException, MessagingException {
+  public void testResetPassword() throws IOException, MessagingException {
     long now = System.currentTimeMillis();
-    String email = String.format("user%s@localhost.localdomain", now);
-    String user = String.format("user%s", now);
-    String password = "password";
-  //  app.james().createUser(user, password);
-    app.registration().start(user, email);
-    List<MailMessage> mailMessages = app.mail().waitForMail(2,10000);
-    //List<MailMessage> mailMessages = app.james().waitForMail(user, password, 60000);
+    String user = "user1553439080306";
+    String email = "user1553439080306@localhost";
+    String newpassword = String.format("%s", now);
+
+    app.userManagement().goToUserManagerPage();
+    app.userManagement().modifyCurrentUser(user);
+    app.userManagement().sendEmailForResetPassword();
+
+    List<MailMessage> mailMessages = app.mail().waitForMail(1,10000);
     String confirmationLink = findConfirmationLink(mailMessages, email);
-    app.registration().finish(confirmationLink, password);
-    assertTrue(app.newSession().login(user,password));
+  //  app.registration().finish(confirmationLink, newpassword);
+
 
   }
-
 
   private String findConfirmationLink(List<MailMessage> mailMessages, String email) {
     MailMessage mailMessage = mailMessages.stream().filter((m) -> m.to.equals(email)).findFirst().get();
@@ -46,5 +47,6 @@ public class RegistrationTests extends TestBase {
   public void stopMailServer() {
     app.mail().stop();
   }
+
 
 }

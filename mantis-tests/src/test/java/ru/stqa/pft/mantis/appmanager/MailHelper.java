@@ -54,4 +54,13 @@ public class MailHelper {
   public void stop() {
     wiser.stop();
   }
+
+  public void checkMailServerStatus() {
+    try {
+      start();
+    }
+    catch (RuntimeException e){
+      stop();
+    }
+  }
 }
