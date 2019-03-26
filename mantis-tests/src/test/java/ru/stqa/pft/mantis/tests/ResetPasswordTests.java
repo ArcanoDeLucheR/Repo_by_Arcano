@@ -26,20 +26,19 @@ public class ResetPasswordTests  extends TestBase {
   @Test
   public void testResetPassword() throws IOException, MessagingException {
     long now = System.currentTimeMillis();
-    String user = "user1553439080306";
-    MantisUserData MantisUser = app.userManagement().getUserId(user);
     String newpassword = String.format("%s", now);
+    MantisUserData MantisUser = app.userManagement().getFirstUser();
     app.userManagement().goToUserManagerPage();
     try {
       app.userManagement().modifyCurrentUser(MantisUser.getId(), MantisUser.getEmail());
     } catch (NullPointerException err) {
-      System.out.println("Пользователь " + user + " не существует!");
+      System.out.println("В базе данных отсутствуют пользователи!");
     }
     app.userManagement().sendEmailForResetPassword();
     List<MailMessage> mailMessages = app.mail().waitForMail(1,10000);
     String confirmationLink = findConfirmationLink(mailMessages, MantisUser.getEmail());
     app.registration().finish(confirmationLink, newpassword);
-    assertTrue(app.newSession().login(user,newpassword));
+    assertTrue(app.newSession().login(MantisUser.getUsername(),newpassword));
 
 
   }

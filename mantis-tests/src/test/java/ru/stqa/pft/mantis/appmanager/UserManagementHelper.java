@@ -42,22 +42,26 @@ public class UserManagementHelper extends HelperBase {
 
   }
 
-  public MantisUserData getUserId(String username) {
+  public MantisUserData getFirstUser() {
     Connection conn = null;
     try {
       conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bugtracker?serverTimezone=UTC&user=root&password=");
       Statement st = conn.createStatement();
       ResultSet rs = st.executeQuery("SELECT id, username, email from mantis_user_table");
       while (rs.next()) {
-        if (rs.getString("username").equals(username)) {
-          return new MantisUserData().withId(rs.getInt("id")).withUsername(rs.getString("username")).withEmail(rs.getString("email"));
+        if (!rs.getString("username").equals("administrator")) {
+          MantisUserData MantisUser = new MantisUserData().withId(rs.getInt("id")).withUsername(rs.getString("username")).withEmail(rs.getString("email"));
+          rs.close();
+          st.close();
+          conn.close();
+          return MantisUser;
         }
       }
       rs.close();
       st.close();
       conn.close();
     } catch (SQLException ex) {
-      // handle any errors
+// handle any errors
       System.out.println("SQLException: " + ex.getMessage());
       System.out.println("SQLState: " + ex.getSQLState());
       System.out.println("VendorError: " + ex.getErrorCode());
