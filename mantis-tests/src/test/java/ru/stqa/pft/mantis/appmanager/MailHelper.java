@@ -63,4 +63,9 @@ public class MailHelper {
       stop();
     }
   }
+
+ // public void restart() {
+  //  stop();
+ //   start();
+//  }
 }
