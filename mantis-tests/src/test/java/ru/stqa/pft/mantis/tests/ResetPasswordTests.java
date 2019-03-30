@@ -42,7 +42,7 @@ public class ResetPasswordTests  extends TestBase {
       app.userManagement().loggingAsAdmin();
       app.userManagement().goToUserManagerPage();
       app.userManagement().modifyCurrentUser(MantisUser.getId(), MantisUser.getEmail());
-  //    app.mail().restart();
+     //app.mail().restart();
 
     }
     app.userManagement().sendEmailForResetPassword();
