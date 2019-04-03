@@ -1,5 +1,6 @@
 package ru.stqa.pft.mantis.tests;
 
+import com.google.protobuf.ServiceException;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -23,7 +24,8 @@ public class ResetPasswordTests  extends TestBase {
 
 
   @Test
-  public void testResetPassword() throws IOException, MessagingException {
+  public void testResetPassword() throws IOException, MessagingException, ServiceException, javax.xml.rpc.ServiceException {
+    skipIfNotFixed(0000001);
     long now = System.currentTimeMillis();
     String newpassword = String.format("%s", now);
     MantisUserData MantisUser = app.userManagement().getFirstUser();
