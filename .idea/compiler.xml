@@ -2,7 +2,19 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel>
+      <module name="add_main" target="1.8" />
+      <module name="add_test" target="1.8" />
+      <module name="addressbook-web(коммит)_main" target="1.8" />
+      <module name="addressbook-web(коммит)_test" target="1.8" />
+      <module name="addressbook-web(рабочий_коммит)_main" target="1.8" />
+      <module name="addressbook-web(рабочий_коммит)_test" target="1.8" />
+      <module name="addressbook-web-tests-old-commit_main" target="1.8" />
+      <module name="addressbook-web-tests-old-commit_test" target="1.8" />
+      <module name="addressbook-web-tests_(рабочие)_main" target="1.8" />
+      <module name="addressbook-web-tests_(рабочие)_test" target="1.8" />
       <module name="addressbook-web-tests_main" target="1.8" />
+      <module name="addressbook-web-tests_old_main" target="1.8" />
+      <module name="addressbook-web-tests_old_test" target="1.8" />
       <module name="addressbook-web-tests_test" target="1.8" />
       <module name="github-sample_main" target="1.8" />
       <module name="github-sample_test" target="1.8" />
