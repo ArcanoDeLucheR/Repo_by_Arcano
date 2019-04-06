@@ -6,10 +6,8 @@
             <class name="ru.stqa.arcano.addressbook.tests.ContactCreationTest"/>
             <class name="ru.stqa.arcano.addressbook.tests.ContactDeletionTest"/>
             <class name="ru.stqa.arcano.addressbook.tests.ContactModificationTests"/>
-            <class name="ru.stqa.arcano.addressbook.tests.ContactPhoneTests"/>
-            <class name="ru.stqa.arcano.addressbook.tests.ContactAddingToGrpup"/>
-            <class name="ru.stqa.arcano.addressbook.tests.ContactDeletionFromGroup"/>
             <class name="ru.stqa.arcano.addressbook.tests.ContactAddressTests"/>
+            <class name="ru.stqa.arcano.addressbook.tests.ContactPhoneTests"/>
         </classes>
     </test>
 </suite>
