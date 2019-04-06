@@ -8,7 +8,6 @@ import org.testng.Assert;
 import ru.stqa.arcano.addressbook.model.ContactData;
 import ru.stqa.arcano.addressbook.model.Contacts;
 import ru.stqa.arcano.addressbook.model.GroupData;
-import ru.stqa.arcano.addressbook.model.Groups;
 
 import java.util.List;
 
@@ -131,11 +130,12 @@ public class ContactHelper extends HelperBase {
       String lastname = element.findElement(By.xpath(".//td[2]")).getText();
       String firstname = element.findElement(By.xpath(".//td[3]")).getText();
       String address = element.findElement(By.xpath(".//td[4]")).getText();
-      String allEmaiаls = element.findElement(By.xpath(".//td[5]")).getText();
+      String allEmails = element.findElement(By.xpath(".//td[5]")).getText();
       String allPhones = element.findElement(By.xpath(".//td[6]")).getText();
 
-      contactCache.add(new ContactData().withId(id).withFirstname(firstname).withLastname(lastname).withAllPhones(allPhones).withAll_emails(allEmaiаls).withAddress(address));
+      contactCache.add(new ContactData().withId(id).withFirstname(firstname).withLastname(lastname).withAllPhones(allPhones).withAll_emails(allEmails).withAddress(address));
     }
+    
     return new Contacts(contactCache);
   }
 
